@@ -22,6 +22,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
+        sceneView.autoenablesDefaultLighting = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +36,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         {
             configuration.trackingImages = imageTotrack
             
-            configuration.maximumNumberOfTrackedImages = 1
+            configuration.maximumNumberOfTrackedImages = 2
             
             print("Image Successfully Added")
         }
@@ -66,6 +68,49 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             plane.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.5)
             
             node.addChildNode(planeNode)
+            
+            if imageAnchor.referenceImage.name == "eevee" {
+                if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn") {
+                    
+                    if let pokeNode = pokeScene.rootNode.childNodes.first {
+                        
+                        pokeNode.eulerAngles.x = .pi / 2
+                        
+                        planeNode.addChildNode(pokeNode)
+                        
+                    }
+                    
+                }
+            }
+            
+            if imageAnchor.referenceImage.name == "oddish" {
+                if let pokeScene = SCNScene(named: "art.scnassets/oddish.scn") {
+                    
+                    if let pokeNode = pokeScene.rootNode.childNodes.first {
+                        
+                        pokeNode.eulerAngles.x = .pi / 2
+                        
+                        planeNode.addChildNode(pokeNode)
+                        
+                    }
+                    
+                }
+            }
+            
+            if imageAnchor.referenceImage.name == "darkrai" {
+                if let pokeScene = SCNScene(named: "art.scnassets/darkrai.scn") {
+                    
+                    if let pokeNode = pokeScene.rootNode.childNodes.first {
+                        
+                        pokeNode.eulerAngles.x = .pi / 2
+                        
+                        planeNode.addChildNode(pokeNode)
+                        
+                    }
+                    
+                }
+            }
+            
         }
         
         return node
